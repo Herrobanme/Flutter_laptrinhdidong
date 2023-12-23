@@ -16,27 +16,84 @@ class ApiService {
   final url_register = "https://chocaycanh.club/public/api/register";
 
   final url_forgot = "https://chocaycanh.club/public/api/password/remind";
-  // ignore: non_constant_identifier_names
-  final url_getStudentInfo = "https://chocaycanh.club/public/api/sinhvien/info";
-  // ignore: non_constant_identifier_names
-  final url_getUserInfo = "https://chocaycanh.club/api/me";
-  // ignore: non_constant_identifier_names
-  final url_dslh = "https://chocaycanh.club/api/lophoc/ds";
-  // ignore: non_constant_identifier_names
-  final url_updateProfile = "https://chocaycanh.club/api/me/details";
-  // ignore: non_constant_identifier_names
-  final url_dangKyLop = "https://chocaycanh.club/api/lophoc/dangky";
-  // ignore: non_constant_identifier_names
-  final url_getcity = 'https://chocaycanh.club/public/api/getjstinh';
-  // ignore: non_constant_identifier_names
-
   late Dio _dio;
   void initialize() {
     _dio = Dio(BaseOptions(responseType: ResponseType.json));
   }
 
+  Future<Response?> getHocPhanDangKy() async {
+    const urlgetDkhp = 'https://chocaycanh.club/api/hocphan/dsmechung';
+    // ignore: unused_local_variable
+    Profile profile = Profile();
+    Map<String, String> headers = {
+      "Content-Type": "application/json; charset=UTF-8",
+      'Authorization': 'Bearer ${Profile().token}',
+      "Accept": "application/json",
+      // "Access-Control-Allow-Origin": "*",
+    };
+    try {
+      var response = await _dio.get(
+        urlgetDkhp,
+        options: Options(headers: headers),
+      );
+      if (response.statusCode == 200) {
+        return response;
+      }
+    } catch (e) {
+      return null;
+    }
+    return null;
+  }
+
+  Future<Response?> dangKyHocPhan(int id) async {
+    final urlDkhp = 'https://chocaycanh.club/api/hocphan/dangky?idhocphan=$id';
+    // ignore: unused_local_variable
+    Profile profile = Profile();
+    Map<String, String> headers = {
+      "Content-Type": "application/json; charset=UTF-8",
+      'Authorization': 'Bearer ${Profile().token}',
+      "Accept": "application/json",
+      // "Access-Control-Allow-Origin": "*",
+    };
+    try {
+      var response = await _dio.post(
+        urlDkhp,
+        options: Options(headers: headers),
+      );
+      if (response.statusCode == 200) {
+        return response;
+      }
+    } catch (e) {
+      return null;
+    }
+    return null;
+  }
+
+  Future<Response?> getDsHocPhan() async {
+    const urlDshocphan = 'https://chocaycanh.club/api/hocphan/ds';
+    // ignore: unused_local_variable
+    Profile profile = Profile();
+    Map<String, String> headers = {
+      "Content-Type": "application/json; charset=UTF-8",
+      'Authorization': 'Bearer ${Profile().token}',
+      "Accept": "application/json",
+      // "Access-Control-Allow-Origin": "*",
+    };
+    try {
+      var response = await _dio.get(
+        urlDshocphan,
+        options: Options(headers: headers),
+      );
+      if (response.statusCode == 200) {
+        return response;
+      }
+    } catch (e) {
+      return null;
+    }
+    return null;
+  }
+
   Future<Response?> getDsdv(int id) async {
-    //danh sách sinh viên
     var urlgetdssv = 'https://chocaycanh.club/api/lophoc/dssinhvien';
     // ignore: unused_local_variable
     Profile profile = Profile();
@@ -374,6 +431,4 @@ class ApiService {
     }
     return null;
   }
-
-  getDsHocPhan() {}
 }

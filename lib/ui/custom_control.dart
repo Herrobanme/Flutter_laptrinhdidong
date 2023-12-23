@@ -22,10 +22,6 @@ class CustomeAvatarProfile extends StatelessWidget {
         child: Image.network(
           Profile().user.avatar,
           fit: BoxFit.cover,
-
-          // child: Image(
-          //   image: AssetImage('assets/images/IU.jpg'),
-          //   fit: BoxFit.cover,
         ),
       ),
     );
@@ -88,7 +84,7 @@ class CustomButton extends StatelessWidget {
           child: Text(
         textButton,
         style: const TextStyle(
-            color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+            color: Colors.white, fontSize: 23, fontWeight: FontWeight.bold),
       )),
     );
   }
@@ -122,7 +118,7 @@ class CustomSpinner extends StatelessWidget {
     return Container(
       height: size.height,
       width: size.width,
-      color: Color.fromARGB(255, 72, 149, 212).withOpacity(0.3),
+      color: Color.fromARGB(255, 40, 148, 255).withOpacity(0.3),
       child: const Center(
         child: Image(
           image: AssetImage('assets/images/load.gif'),

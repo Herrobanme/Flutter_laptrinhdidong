@@ -1,16 +1,13 @@
 import 'package:connection/models/hocphan.dart';
 import 'package:connection/providers/hocphandangky_viewmodel.dart';
 import 'package:connection/providers/mainViewModel.dart';
-import 'package:connection/repositories/ds_hocphan_repository.dart';
-import 'package:connection/ui/custom_control.dart';
+import 'package:connection/ui/AppConstant.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'AppConstant.dart';
-
-class SubPageDsHocPhan extends StatelessWidget {
-  const SubPageDsHocPhan({super.key});
-  static int idPage = 5;
+class SubPageDangKyHocphan extends StatelessWidget {
+  const SubPageDangKyHocphan({super.key});
+  static int idPage = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +17,7 @@ class SubPageDsHocPhan extends StatelessWidget {
         const Padding(
           padding: EdgeInsets.symmetric(vertical: 20),
           child: Text(
-            'Danh Sách Học Phần',
+            'Học Phần Đăng Ký',
             style: TextStyle(
               color: Color.fromARGB(255, 6, 27, 146),
               fontSize: 30,
@@ -29,9 +26,9 @@ class SubPageDsHocPhan extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.75,
-          child: FutureBuilder<List<HocPhan>>(
-            future: HocPhanRepository().getDsHocPhan(),
+          height: MediaQuery.of(context).size.height - 200,
+          child: FutureBuilder<List<HocPhanDangKy>>(
+            future: viewmodel.getHocPhanDangKy(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(
@@ -41,9 +38,9 @@ class SubPageDsHocPhan extends StatelessWidget {
                 return Text('Error: ${snapshot.error}');
               } else {
                 // Xây dựng giao diện sử dụng dữ liệu từ API
-                List<HocPhan> dataList = snapshot.data!;
+                List<HocPhanDangKy> dataList = snapshot.data!;
                 return SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.8,
+                  height: MediaQuery.of(context).size.height * 0.4,
                   width: double.infinity,
                   child: GridView.builder(
                     padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
@@ -51,22 +48,23 @@ class SubPageDsHocPhan extends StatelessWidget {
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       // maxCrossAxisExtent: 200,
+                      // childAspectRatio: 1,
                       crossAxisSpacing: 15, // Khoảng cách giữa các cột
                       mainAxisSpacing: 10, // Khoảng cách giữa các hàng
                     ),
                     itemCount: dataList.length,
                     itemBuilder: (context, index) {
                       return Container(
-                        height: 500,
+                        height: 200,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 85, 240, 98),
+                          color: const Color.fromARGB(255, 52, 241, 5),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(6, 15, 6, 10),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Column(
                                 children: [
@@ -87,17 +85,6 @@ class SubPageDsHocPhan extends StatelessWidget {
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ],
-                              ),
-                              InkWell(
-                                onTap: () async {
-                                  await viewmodel
-                                      .dangKyHocPhan(dataList[index].id);
-                                },
-                                child: SizedBox(
-                                  width: double.infinity,
-                                  height: 55,
-                                  child: CustomButton(textButton: 'Đăng ký'),
-                                ),
                               ),
                             ],
                           ),

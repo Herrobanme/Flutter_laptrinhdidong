@@ -29,7 +29,7 @@ class PageForgotPass extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Image(
-                            image: AssetImage('assets/images/check.gif'),
+                            image: AssetImage('assets/images/verify.gif'),
                             width: 100,
                           ),
                           const SizedBox(
@@ -71,8 +71,7 @@ class PageForgotPass extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
-                        Text(
-                            "Hãy điền email để thực hiện quy trính tạo lại mật khẩu!"),
+                        Text("Hãy điền email để tạo lại mật khẩu!"),
                         const SizedBox(
                           height: 10,
                         ),
@@ -97,7 +96,9 @@ class PageForgotPass extends StatelessWidget {
                           },
                           child: const CustomButton(textButton: "Gửi yêu cầu"),
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Row(
                           children: [
                             const Text("Bạn đã có tài khoản?"),

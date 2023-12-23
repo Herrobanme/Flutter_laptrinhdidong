@@ -20,10 +20,8 @@ class LopRepository {
   }
 
   Future<List<Dssv>> getDssv(int id) async {
-    //them
     List<Dssv> list = [];
-    var api;
-    var response = await api.getDsdv(id);
+    var response = await ApiService().getDsdv(id);
     if (response != null && response.data != null) {
       var data = response.data;
       List<dynamic> jsonList = json.decode(data);

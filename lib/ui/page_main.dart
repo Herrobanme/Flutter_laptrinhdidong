@@ -7,7 +7,7 @@ import 'package:connection/ui/AppConstant.dart';
 import 'package:connection/ui/custom_control.dart';
 import 'package:connection/ui/page_dkLop.dart';
 import 'package:connection/ui/page_login.dart';
-import 'package:connection/ui/subPageDiemDanh.dart';
+import 'package:connection/ui/subPageDangKyHocPhan.dart';
 import 'package:connection/ui/subPageDsHocPhan.dart';
 import 'package:connection/ui/subPageDsLop.dart';
 import 'package:connection/ui/subPageProfile.dart';
@@ -24,7 +24,7 @@ class PageMain extends StatelessWidget {
   final List<String> menuTitles = [
     "Tin tức",
     "Profile",
-    "Điểm danh",
+    "Học Phần đăng ký",
     "Tìm kiếm",
     "Danh sách lớp",
     "Danh sách học phần"
@@ -47,8 +47,8 @@ class PageMain extends StatelessWidget {
     Widget body = SubPageTinTuc();
     if (viewModel.activeMenu == SubPageProfile.idPage) {
       body = SubPageProfile();
-    } else if (viewModel.activeMenu == SubPageDiemDanh.idPage) {
-      body = SubPageDiemDanh();
+    } else if (viewModel.activeMenu == SubPageDangKyHocphan.idPage) {
+      body = SubPageDangKyHocphan();
     } else if (viewModel.activeMenu == SubPageTimKiem.idPage) {
       body = SubPageTimKiem();
     } else if (viewModel.activeMenu == SubPageDsLop.idPage) {
@@ -146,10 +146,6 @@ class MenuItemList extends StatelessWidget {
                     width: size.height * 0.16,
                     child: CustomeAvatarProfile(
                       size: size,
-
-                      // child: Image(
-                      //   image: AssetImage('assets/images/IU.jpg'),
-                      //   fit: BoxFit.cover,
                     )),
               ),
             ),

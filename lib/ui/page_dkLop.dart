@@ -35,7 +35,7 @@ class _PageDangKyLopState extends State<PageDangKyLop> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     Profile profile = Profile();
-
+    print('${mssv}--${idLop}--${tenLop}');
     return Scaffold(
       backgroundColor: AppConstant.mainColor,
       body: Padding(
