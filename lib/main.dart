@@ -2,6 +2,7 @@ import 'package:connection/models/place.dart';
 import 'package:connection/models/profile.dart';
 import 'package:connection/providers/diaChiModel.dart';
 import 'package:connection/providers/forgotPassViewModel.dart';
+import 'package:connection/providers/hocphandangky_viewmodel.dart';
 import 'package:connection/providers/loginViewModel.dart';
 import 'package:connection/providers/mainViewModel.dart';
 import 'package:connection/providers/menuBarViewModel.dart';
@@ -37,6 +38,8 @@ void main() {
     ChangeNotifierProvider<ProfileViewModel>(
         create: (context) => ProfileViewModel()),
     ChangeNotifierProvider<DiaChiModel>(create: (context) => DiaChiModel()),
+    ChangeNotifierProvider<HocPhanDangKyViewModel>(
+        create: (context) => HocPhanDangKyViewModel()),
   ], child: const MyApp()));
 }
 
